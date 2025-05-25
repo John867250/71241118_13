@@ -1,0 +1,19 @@
+fname = input("Enter a file name: ")
+
+try:
+    fhand = open(fname)
+except:
+    print("File tidak ditemukan")
+    quit()
+
+jam_dict = dict()
+
+for line in fhand:
+    if line.startswith("From "):
+        bagian = line.split()
+        waktu = bagian[5]
+        jam = waktu.split(":")[0]
+        jam_dict[jam] = jam_dict.get(jam, 0) + 1
+
+for k, v in sorted(jam_dict.items()):
+    print(k, v)
